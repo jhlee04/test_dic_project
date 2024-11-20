@@ -8,9 +8,13 @@ from collections import defaultdict
 from django.contrib.auth.decorators import user_passes_test
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils.safestring import mark_safe
+
 from .models import Term
 from .forms import TermForm, UploadCSVForm
 import csv
+import re
+
 
 # 1. Index: 용어 목록 페이지
 def index(request):
