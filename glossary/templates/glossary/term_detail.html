@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ term.terms }} - 용어 사전</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --apple-gray: #86868b;
+            --apple-light-gray: #f5f5f7;
+            --apple-blue: #2997ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #1d1d1f;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Term Content */
+        .term-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+            line-height: 1.2;
+        }
+
+        .term-definition {
+            font-size: 1.2rem;
+            color: #1d1d1f;
+            background: var(--apple-light-gray);
+            padding: 2rem;
+            border-radius: 18px;
+            margin: 2rem 0;
+            line-height: 1.7;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--apple-blue);
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:before {
+            content: "←";
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #0077ed;
+        }
+
+        .back-link:hover:before {
+            transform: translateX(-4px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--apple-light-gray);
+            color: var(--apple-gray);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>용어 사전</h1>
+    </header>
+
+    <div class="container">
+        <article>
+            <h2 class="term-title">{{ term.terms }}</h2>
+            <div class="term-definition">
+                {{ term.definition }}
+            </div>
+            <a href="/" class="back-link">목록으로 돌아가기</a>
+        </article>
+    </div>
+
+    <footer class="footer">
+        © 2024 용어 사전 | 개선된 UI/UX 디자인
+    </footer>
+</body>
+</html>

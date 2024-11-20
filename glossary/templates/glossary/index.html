@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>용어 사전</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --apple-gray: #86868b;
+            --apple-light-gray: #f5f5f7;
+            --apple-blue: #2997ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #1d1d1f;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Search */
+        .search-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 680px;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--apple-light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 125, 250, 0.1);
+            background: #fff;
+            border: 1px solid var(--apple-blue);
+        }
+        /* Type Sections */
+        .type-section {
+            margin: 1rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--apple-light-gray);
+        }
+
+        /* Type Headings */
+        .type-heading {
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.7rem;
+            margin: 0;
+            color: #1d1d1f;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        .type-heading:hover {
+            background: var(--apple-light-gray);
+        }
+
+        .type-heading::after {
+            content: "›";
+            font-size: 1.5rem;
+            transform: rotate(90deg);
+            transition: transform 0.3s ease;
+        }
+
+        .type-heading.collapsed::after {
+            transform: rotate(0deg);
+        }
+
+
+        /* Term Links */
+        .terms-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .terms-list.expanded {
+            max-height: 2000px; /* Adjust based on your needs */
+            opacity: 1;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .term-link {
+            display: block;
+            padding: 1rem;
+            background: var(--apple-light-gray);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #1d1d1f;
+            transition: all 0.3s ease;
+        }
+
+        .term-link:hover {
+            background: #fff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--apple-light-gray);
+            color: var(--apple-gray);
+            font-size: 0.9rem;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--apple-gray);
+            font-size: 1.2rem;
+        }
+        .search-button {
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--apple-light-gray);
+            color: #333; /* Button text color */
+            cursor: pointer;
+            margin-left: 0.5rem; /* Space between the input and button */
+            transition: all 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: #ddd; /* Slightly darker background on hover */
+        }
+        .type-toggle-container {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+
+        .type-unfold-button {
+            font-size: 0.7rem;
+            padding: 0.5rem 1rem;
+            border: 0px solid var(--apple-gray);
+            border-radius: 12px;
+            background: var(--apple-light-gray);
+            color: var(--apple-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .type-unfold-button:hover {
+            background: #ddd;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>용어 사전</h1>
+    </header>
+
+    <div class="container">
+        <div class="search-container">
+            <form method="get" action="">
+                <input type="text" name="q" value="{{ query }}" class="search-input" placeholder="검색어를 입력하세요...">
+                <button type="submit" class="search-button">검색</button>
+            </form>
+        </div>
+        <!-- Add the "Type Unfold" Button -->
+        <div class="type-toggle-container">
+            <button class="type-unfold-button" onclick="foldAll()">Fold</button>
+            <button class="type-unfold-button" onclick="unfoldAll()">Unfold</button>
+        </div>
+
+        {% if terms_by_type %}
+            {% for type, terms in terms_by_type.items %}
+
+            <section class="type-section">
+                <h2 class="type-heading collapsed" onclick="toggleSection(this)">{{ type }}</h2>
+                <ul class="terms-list">
+                    {% for term in terms %}
+                    <li>
+                        <a href="{{ term.id }}/" class="term-link">{{ term.terms }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endfor %}
+        {% else %}
+            <div class="no-results">
+                검색 결과가 없습니다.
+            </div>
+        {% endif %}
+    </div>
+
+    <footer class="footer">
+        © 2024 용어 사전 | 예시 웹 페이지
+    </footer>
+
+    <script>
+        function toggleSection(heading) {
+            heading.classList.toggle('collapsed');
+            const termsList = heading.nextElementSibling;
+            termsList.classList.toggle('expanded');
+        }
+
+        // Initialize all sections as collapsed
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.terms-list');
+            sections.forEach(section => {
+                section.classList.remove('expanded');
+            });
+            const headings = document.querySelectorAll('.type-heading');
+            headings.forEach(heading => {
+                heading.classList.add('collapsed');
+            });
+        });
+        function foldAll() {
+            const headings = document.querySelectorAll('.type-heading');
+            const termsLists = document.querySelectorAll('.terms-list');
+
+            headings.forEach(heading => heading.classList.add('collapsed'));
+            termsLists.forEach(list => list.classList.remove('expanded'));
+        }
+        function unfoldAll() {
+            const headings = document.querySelectorAll('.type-heading');
+            const termsLists = document.querySelectorAll('.terms-list');
+
+            headings.forEach(heading => heading.classList.remove('collapsed'));
+            termsLists.forEach(list => list.classList.add('expanded'));
+        }
+    </script>
+</body>
+</html>
